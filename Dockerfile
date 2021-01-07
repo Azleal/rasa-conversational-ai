@@ -7,9 +7,15 @@ RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-
 
 WORKDIR /rasa
 
-COPY ./* ./
+COPY ./ /rasa/
+
+RUN ls -alh
 
 RUN python -m pip install -U pip
 
 RUN /bin/bash -c "source $HOME/.poetry/env && cd /rasa &&  poetry install && \
-    pip3 install rasa-x --extra-index-url https://pypi.rasa.com/simple"
+    pip3 install rasa-x --extra-index-url https://pypi.rasa.com/simple && \
+    rasa train --num-threads 4 && rasa run actions"
+
+
+
