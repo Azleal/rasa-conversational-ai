@@ -15,7 +15,9 @@ RUN python -m pip install -U pip
 
 RUN /bin/bash -c "source $HOME/.poetry/env && cd /rasa &&  poetry install && \
     pip3 install jieba rasa-x --extra-index-url https://pypi.rasa.com/simple && \
-    rasa train --num-threads 4 && rasa run actions"
+    rasa train --num-threads 4"
+    
+#RUN  "rasa run actions"
 
 
 
